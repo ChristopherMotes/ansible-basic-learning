@@ -5,11 +5,13 @@
    
   tasks:
   - name: Install the apache
+    when: packages is defined
     package: 
       name: "{{packages}}"
       state: present
 
   - name: Ensure the installed service is enabled and running
+    when: service is defined
     service:
       name: "{{service}}"
       state: started
@@ -20,7 +22,7 @@
       dest: /var/www/html/index.html
     register: configfile
   - name: apache restart
-    when: configfile.changed
+    when: configfile.changed and service is defined
     service: 
       name: "{{service}}"
       state: restarted
