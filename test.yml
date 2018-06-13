@@ -6,12 +6,12 @@
   tasks:
   - name: Install the apache
     package: 
-      name: httpd24
+      name: "{{packages}}"
       state: present
 
   - name: Ensure the installed service is enabled and running
     service:
-      name: httpd
+      name: "{{service}}"
       state: started
       enabled: true
   - name: Index .html filee
@@ -22,7 +22,7 @@
   - name: apache restart
     when: configfile.changed
     service: 
-      name: httpd
+      name: "{{service}}"
       state: restarted
 
 
