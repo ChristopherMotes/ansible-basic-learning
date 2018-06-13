@@ -13,3 +13,16 @@
     service:
       name: httpd
       state: started
+      enabled: true
+  - name: Index .html filee
+    copy:
+      src: ./files/index.html
+      dest: /var/www/html/index.html
+    register: configfile
+  - name: apache restart
+    when: configfile.changed
+    service: 
+      name: httpd
+      state: restart
+
+
