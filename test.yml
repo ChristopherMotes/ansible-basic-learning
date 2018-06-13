@@ -23,6 +23,6 @@
     when: configfile.changed
     service: 
       name: httpd
-      state: restart
+      state: restarted
 
 
