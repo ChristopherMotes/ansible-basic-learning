@@ -1,0 +1,15 @@
+--- 
+- hosts: 127.0.0.1
+  vars: 
+    apche_port : 443
+   
+  tasks:
+  - name: Install the apache
+    package: 
+      name: httpd24
+      state: present
+
+  - name: Ensure the installed service is enabled and running
+    service:
+      name: httpd
+      state: started
